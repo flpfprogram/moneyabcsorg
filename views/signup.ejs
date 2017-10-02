@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>MoneyABC's SignUp</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+      <!-- //for-mobile-apps -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.css" rel="stylesheet">
+    <!-- js -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+    <!-- load fontawesome -->
+    <style>
+        body {
+            padding-top: 120px;
+        }
+         [tooltip]:before {
+    /* needed - do not touch */
+    content: attr(tooltip);
+    position: absolute;
+    opacity: 0;
+    
+    /* customizable */
+    transition: all 0.15s ease;
+    padding: 10px;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px silver;    
+}
+
+[tooltip]:hover:before {
+    /* needed - do not touch */
+    opacity: 1;
+    
+    /* customizable */
+    background: ivory;
+    margin-top: -50px;
+    margin-left: 20px;    
+}
+
+[tooltip]:not([tooltip-persistent]):before {
+    pointer-events: none;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo">
+                    <a href="#"><img src="images/logo.png"></a>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="under_construction.html">Educators</a></li>
+                    <li><a href="under_construction.html">Support Financial Literacy</a></li>
+                    <li><a href="under_construction.html">About Us</a></li>
+                    <li><a href="under_construction.html">Contact Us</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="nav-buttons" id="user-buttons">
+                        <a type="button" class="btn btn-default btn-round" href="/login">Log in</a>
+                        <a type="button" class="btn btn-primary btn-round" href="/signup">Sign up</a>
+                    </div>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1><span></span> <center>SignUp</center></h1>
+
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div>
+                <% } %>
+
+                    <!-- LOGIN FORM -->
+                    <form action="/signup"  name="navsearch" method="post">
+
+                    <label style="font-weight:bold">
+                     Prefix/Title: </label>
+                    <div class="prefix" tooltip="Please enter a Prefix/Title that suits you">
+                                <select  name="title" id="title">
+                                    <option value="Mr."> Mr.</option>
+                                    <option value="Mrs."> Mrs.</option>
+                                    <option value="Miss"> Miss</option>
+                                    <option value="Ms."> Ms.</option>
+                                    <option value="Dr."> Dr.</option>
+                                </select>
+                                </div>
+                               
+                                <br> 
+                        <div class="form-group " tooltip="Please enter your Firstname">
+                                    
+                                    <input  type="text" class="form-control" name="username" id="username" tabindex="1"   placeholder="Firstname" value="">
+
+                                </div>
+                                 <div class="form-group" tooltip="Please enter your Lastname">
+                                    
+                                    <input type="text"  class="form-control" name="lastname" id="lastname" tabindex="1"   placeholder="Lastname" value="">
+                                </div>
+                                <div class="form-group" tooltip="Please enter your Email-Address">
+                                    
+                                    <input type="email" class="form-control" name="email" id="email" tabindex="1" class="form-control"  placeholder="Email Address" value="">
+                                </div>
+                                <div class="form-group" tooltip="Please enter your Address here">
+                                   
+                                    <input type="address" name="address1" id="address1" tabindex="1"  class="form-control" placeholder="Address line1" value="">
+                                </div>
+                                <div class="form-group" tooltip="Please enter your Address here">
+                                    
+                                    <input type="address" name="address2" id="address2" tabindex="1" class="form-control"  placeholder="Address line2" value="">
+                                </div>
+                                <div class="form-group" tooltip="Please select your Country here">
+                                    
+                                    <select name="countries" id="countries"  class="form-control bfh-countries" tabindex="1" data-country="US" onchange="document.getElementById('countries').value=this.value;"></select>
+                                </div>
+                                <div class="form-group" tooltip="Please select your State here">
+                                    
+                                    <select name="states" id="states" class="form-control bfh-states"  onchange="document.getElementById('states').value=this.value;" tabindex="1" data-state="TX" data-country="countries">
+                                        
+                                    </select>
+                                </div>
+                                <div class="form-group" tooltip="Please enter your City here">
+                                    
+                                    <input type="city" name="city" id="city"  tabindex="1" class="form-control" placeholder="City" value="">
+                                </div>
+                                <div class="form-group" tooltip="Please enter your Zipcode here">
+                                   
+                                    <input type="zipcode" name="zipcode" id="zipcode"  tabindex="1" class="form-control" placeholder="Zip code" value="">
+                                </div>
+                                <div class="form-group" tooltip="Please enter your Phone-number here">
+                                    
+                                    <input type="text" class="form-control "  tabindex="1"  placeholder="(000)-000-0000" data-country="countries">
+                                </div>
+                                <div class="form-group"tooltip="Please select the Type of Organisation">
+                                    <fieldset>
+                                        <label>
+                                            
+                                            <select  tabindex="1"  class="form-control" name="organization"  onchange="java_script_:show(this.options[this.selectedIndex].value);">"
+                                                <!--onchange="document.getElementById('organization').value=this.value;"-->
+                                                <option value="">Type of organization</option>
+                                                <option value="school">School</option>
+                                                <option value="Regulator or government agency">Regulator or government agency</option>
+                                                <option value="non-profit">non-profit</option>
+
+                                                <option>Others</option>
+                                            </select>
+
+                                            <div id="hiddenDiv" style="display:none" tooltip="Please Select your school">
+                                                <br>
+                                                <label class="checkbox-inline">School</label>
+                                                
+                                                <select name="school">
+                                                    <option value="KG">KG</option>
+                                                    <option value="Elementary">Elementary</option>
+                                                    <option value="Intermediate">Intermediate</option>
+                                                    <option value="MiddleSchool">MiddleSchool</option>
+                                                    <option value="JuniorSchool">JuniorSchool</option>
+                                                    <option value="HighSchool">HighSchool</option>
+                                                    <option value="CommunityCollege">CommunityCollege</option>
+                                                    <option value="Four-Year-College">Four-Year-College</option>
+                                                    <option value="GradSchool">GradSchool</option>
+                                                    <option value="ProfessionalSchools">ProfessionalSchools</option>
+                                                </select>
+                                            </div>
+
+                                            <div id="hiddenDiv1" style="display:none" tooltip="Please enter select your here">
+                                                <br>
+                                                
+                                                <label class="checkbox-inline" id="nonprofit">non-profit</label>
+                                                <select name="non-profit">
+                                                    <option value="Religious">Religious</option>
+                                                    <option value="Charitable">Charitable</option>
+                                                    <option value="Scientific">Scientific</option>
+                                                    <option value="Educational">Educational</option>
+                                                    <option value="CommunityServices">CommunityServices</option>
+                                                    <option value="AdvocacyGroups">AdvocacyGroups</option>
+
+                                                </select>
+                                            </div>
+                                        </label>
+                                    </fieldset>
+                                </div>
+
+                                <div class="form-group" tooltip="Please type your Name of Organization here">
+                                    
+                                    <input type="nameoforganisation" name="nameoforganisation" id="nameoforganisation" tabindex="1"  class="form-control" placeholder="Name of Organization" value="">
+                                </div>
+
+                                <div class="form-group" tooltip="Please type your Role in an  Organization here">
+                                    
+                                    <input type="roleinorganisation" name="roleinorganisation" id="roleinorganisation" tabindex="1"  class="form-control" placeholder="Role in Organization" value="">
+                                </div>
+                               <!--  <div class="form-group">
+                                    <label class="checkbox-inline" name="check" id="check" onchange="document.getElementById('check').value=this.value;" style="font-weight:bold">Role in an Organization:</label>
+                                    <br>&nbsp &nbsp
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="">Department Directory</label> &nbsp&nbsp
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="">Admin</label>&nbsp&nbsp&nbsp
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="">Instructor</label>&nbsp&nbsp&nbsp
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="">Staff</label>&nbsp&nbsp
+                                </div> -->
+                              <!--   <div class="form-group" tooltip="Please enter the URL to institution">
+                                    
+                                    <input type="url" name="url" id="url" tabindex="1"  class="form-control" placeholder="URL to Institution" value="http://www.google.com">
+                                </div>
+ -->
+
+                                <div class="form-group" tooltip="Please enter the URL to institution">
+                                    
+                                    <input type="url2" name="url2" id="url2" tabindex="1"  class="form-control" placeholder="URL to institution" value="">
+                                </div>
+                                 <div class="form-group" tooltip="Please enter the URL to profile">
+                                    
+                                    <input type="url1" name="url1" id="url1" tabindex="1"  class="form-control" placeholder="URL to Profile" value="">
+                                </div>
+
+
+                               <!--  <div class="form-group" tooltip="Please select your Role within the  Organization">
+                                    <label>
+                                        
+                                        <select class="form-control" name="organization" onchange="document.getElementById('rolewithinorganization').value=this.value;">
+                                            <option value=""><label>Role within organization</label></option>
+                                            <option>Director</option>
+                                            <option>CEO</option>
+                                            <option>President</option>
+                                            <option>Dean</option>
+                                            <option>Supervisor</option>
+                                        </select>
+                                    </label>
+                                </div> -->
+                                <div class="form-group" tooltip="Please select a password for your account">
+                                    
+                                    <input type="password" name="password" id="password" tabindex="2"  class="form-control" placeholder="Password">
+                                </div>
+                       <div class="form-group" tooltip="Please confirm your password">
+                                    
+                                    <input type="password" name="confirmpassword" id="confirmpassword"  tabindex="2" class="form-control" placeholder="Confirm Password">
+                        </div>
+                      <div class="g-recaptcha" id="g-recaptcha-response" data-sitekey="6LftDyMTAAAAAEjRmrZAkYLks2XBsjPfEWeIU7C3"></div><br>
+                        <button type="submit" name="register-submit" id="register-submit" style="background-color: #008000;border: none;
+    color: white;
+    padding: 15px 32px; ">SignUp</button>
+   <!-- <button type="submit" name="register-submit" id="register-submit" style="background-color: #008CBA;border: none;
+    color: white;
+    padding: 15px 32px; " href="/signup">Sign up</button> -->
+                    </form>
+
+                    <hr>
+
+                    <p>Need an account? <a href="/signup">Signup</a></p>
+                    <p>Or go <a href="/">home</a>.</p>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

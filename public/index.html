@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Money ABCs</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Money ABCs Financial literacy program" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- one drive CDN -->
+    <script type="text/javascript" src="https://js.live.net/v7.0/OneDrive.js"></script>
+
+
+    <!-- //for-mobile-apps -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-tour.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/image-picker.css">
+    <link href="css/hopscotch.min.css" rel="stylesheet">
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <!-- js -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/notify.css">
+    <!-- //js -->
+
+    <style>
+        .navbar-fixed-left {
+            width: 15%;
+            position: fixed;
+            border-radius: 0;
+            height: 100%;
+        }
+
+        .navbar-fixed-left .navbar-nav > li {
+            float: none;  /* Cancel default li float: left */
+            width: 100%;
+        }
+
+        .navbar-fixed-left + .container {
+            padding-left: 160px;
+        }
+
+        /* On using dropdown menu (To right shift popuped) */
+        .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+            margin-top: -50px;
+            margin-left: 140px;
+        }
+
+        /*.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+            color: #fff;
+            background-color: #8cc63f;
+        }*/
+
+        .navbar #nav > .active > a {
+            color: #fff;
+            background-color: #8cc63f;
+        }
+
+        .active{
+            color: #fff !important;
+            background-color: #8cc63f !important;
+        }
+    </style>
+</head>
+
+<body ng-app="moneyabcs" ng-controller="moneycontroller" class="ng-cloak">
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=728413860639319";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript">
+    function launchOneDrivePicker(){
+        var odOptions = {
+            clientId: "235ed9a9-b071-423e-81d2-abbfbe3c7ed1",
+            action: "share | download | query",
+            multiSelect: true,
+            openInNewWindow: true,
+            advanced: {},
+            success: function(files) { console.log(files) },
+            cancel: function() { /* cancel handler */ },
+            error: function(e) { /* error handler */ }
+        }
+        OneDrive.open(odOptions);
+    }
+</script>
+<button onClick="launchOneDrivePicker">Open from OneDrive</button>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" id="logo" ui-sref="home"><img src="images/logo.png"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav nav-money">
+                <li class="dropdown">
+                    <a showpage="default" ng-click="showpagefunc($event)"
+                       class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="showpage='aboutUS' ">About Us</a></li>
+                        <li><a ng-click="showpage='contactUS' ">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="" style="cursor: pointer;"><a showpage="student"
+                                 ng-click="showpagefunc($event)">Student</a></li>
+                <li class="" style="cursor: pointer;"><a showpage="educator"
+                                 ng-click="showpagefunc($event)">Educator</a></li>
+                <li style="cursor: pointer;"><a showpage="supportflp"
+                        ng-click="showpagefunc($event)">Support FLP</a></li>
+                <li style="cursor: pointer;"
+                    ng-if="(uName != undefined) && (uName != '')"><a
+                        showpage="dashboard"
+                        ng-click="showpagefunc($event)">Dashboard</a></li>
+
+            </ul>
+            <!--<form class="navbar-form navbar-left nav-money">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>-->
+
+
+            <ul class="nav navbar-nav navbar-right nav-money marginTop8">
+                <div id="login" ng-show="!logInFlag">
+                    <a type="button" class="btn btn-default btn-round"  href="/login">Log in </a> <a type="button" class="btn btn-primary btn-round" href="/signupNew" id="signup">Sign up</a>
+
+                </div>
+                <li ng-if="(uName != undefined) && (uName != '')">
+                    <ul class="nav navbar-nav navbar-right" style="padding-bottom: 0%;padding-top: 0%;">
+                        <div class="dropdown">
+                            <span style="color: #9d9d9d;">Hi,</span>
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown">{{uName}}
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li style="cursor: pointer;"><a
+                                        showpage="dashboard"
+                                        ng-click="showpagefunc($event)">
+                                    Dashboard</a></li>
+                                <li style="cursor: pointer;"><a showpage="profile"
+                                        ng-click="showpagefunc($event)">Profile</a></li>
+                                <li style="cursor: pointer;"><a showpage="saved articles"
+                                        ng-click="showpagefunc($event)">Saved Articles</a></li>
+                                <li class="divider"></li>
+                                <li style="cursor: pointer;"><a ng-click="logOutProfile()">Sign
+                                    Out</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left nav-money"
+                  style="float:right!important;padding-right:50px" role="search">
+                <div class="top-search-bar">
+                    <div class="input-group" id = "group-key">
+                        <div class="input-group-btn search-panel" ng-init="searchType='All'">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Search: {{searchType}}<span class="caret"></span></button>
+
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li ng-click="setSearch('Articles'); searchType='Articles'"><a href="#id" ><i class="fa fa-angle-double-right"></i>Articles</a></li>
+                                <li ng-click="setSearch('Presentation');searchType='Presentations'"><a href="#name" ><i class="fa fa-angle-double-right"></i>Presentations</a></li>
+                                <li ng-click="setSearch('Video'); searchType='Videos'"><a href="#videos" ><i class="fa fa-angle-double-right"></i>Videos</a></li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="search_param" value="name" id="search_param">
+                        <input type="text" id="search-key" class="form-control search1" placeholder="What are you looking for? (e.g. Credit Scores) " autocomplete="off">
+                        <div class="input-group-btn">
+                            <button id="search1_btn" ng-click="searchArticle('search1')" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<!--
+<div ng-view>
+-->
+<section ng-if="showpage =='default'" class="main-banner" style="padding-top:
+ 48px;">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active"> <img src="images/Layer-1.png" alt="First slide">
+                <div class="carousel-caption">
+                    <!--  <h3>
+                            First slide</h3> -->
+                    <h4>Our Mission </h4>
+                    <h4>Connecting individuals, institutions, and organizations to resources and research in order to cultivate personal financial stability</h4> </div>
+            </div>
+            <div class="item"> <img src="images/Layer-1.png" alt="Second slide">
+                <div class="carousel-caption">
+                    <!-- <h3>
+                            Second slide</h3> -->
+                    <h4>Our Vision </h4>
+                    <h4>For all people to be equipped to make sound financial decisions</h4> </div>
+            </div>
+            <div class="item"> <img src="images/Layer-1.png" alt="Third slide">
+                <div class="carousel-caption">
+                    <!-- <h3>
+                            Third slide</h3>-->
+                    <h4>This platform is open to all financial literacy activist and educators</h4> </div>
+            </div>
+            <div class="item"> <img src="images/Layer-1.png" alt="Fourth slide">
+                <div class="carousel-caption">
+                    <!-- <h3>
+                            Third slide</h3> -->
+                    <h4>Teachers of all levels, K-College will be able to create custom courses for their students</h4> </div>
+            </div>
+            <div class="item"> <img src="images/Layer-1.png" alt="Fifth slide">
+                <div class="carousel-caption">
+                    <!--  <h3>
+                            Third slide</h3> -->
+                    <h4>Connect with Professionals and Resources to support your financial literacy programs</h4> </div>
+            </div>
+            <div class="item"> <img src="images/Layer-1.png" alt="Fifth slide">
+                <div class="carousel-caption">
+                    <!--  <h3>
+                            Third slide</h3> -->
+                    <h4>Join our Network and Open an account for free</h4> </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
+                        </span></a> </div>
+<!--    <div class="mainPitch" style="position:absolute; top:220px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-5">
+                    <div class="input-group" id="input_group">
+                        <div class="input-group-btn search-panel">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> <span id="search_concept">Search for</span> <span class="caret"></span> </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-click="setSearch('Articles')"><a href="#id"><i class="fa fa-angle-double-right"></i>Articles</a></li>
+                                <li ng-click="setSearch('Presentation')"><a href="#name"><i class="fa fa-angle-double-right"></i>Presentations</a></li>
+                                <li ng-click="setSearch('Video')"><a href="#videos"><i class="fa fa-angle-double-right"></i>Videos</a></li>
+                                &lt;!&ndash; <li ng-click="setSearch(Articles)"><a href="#webinars"><i class="fa fa-angle-double-right"></i>Webinars</a></li>
+                                 <li ng-click="setSearch(Articles)"><a href="#journals"><i class="fa fa-angle-double-right"></i>Journals</a></li> &ndash;&gt;
+                            </ul>
+                        </div>
+                        <input type="hidden" name="search_param" value="name" id="search_param">
+                        <input type="text" id="search-key" class="form-control search2" placeholder="What are you looking for? (e.g. Credit Scores) " autocomplete="off"> <span class="input-group-btn">
+								<button id="search2_btn" ng-click="searchArticle('search2')" class="btn btn-info" type="submit">Search</button>
+							</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</section>
+
+<div ng-if="showpage =='profile'" style="margin-top: 3%;">
+
+
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1><span></span> <center>Profile</center></h1>
+        <form action="/api/editprofile"  name="myprofile" method="post">
+            <label style="font-weight:bold">
+                Prefix/Title: </label>
+            <div class="prefix" tooltip="Please enter a Prefix/Title that suits you">
+                <select  ng-bind={{profile.title}} name="title" id="title">
+                    <option value="Mr."> Mr.</option>
+                    <option value="Mrs."> Mrs.</option>
+                    <option value="Miss"> Miss</option>
+                    <option value="Ms."> Ms.</option>
+                    <option value="Dr."> Dr.</option>
+                </select>
+            </div>
+
+            <br>
+            <div class="form-group " tooltip="Please enter your Firstname">
+
+                Firstname: <input  type="text" class="form-control" name="username" id="username" tabindex="1"  ng-model="profile.username">
+
+            </div>
+            <div class="form-group" tooltip="Please enter your Lastname">
+
+                Lastname: <input type="text"  class="form-control" name="lastname" id="lastname" tabindex="1"   ng-model="profile.lastname">
+            </div>
+            <div class="form-group" tooltip="Please enter your Email-Address">
+
+                Email Address: <input type="email" class="form-control" name="email" id="email" tabindex="1" class="form-control"  ng-model="profile.email">
+            </div>
+            <div class="form-group" tooltip="Please enter your Address here">
+
+                Address line1: <input type="address" name="address1" id="address1" tabindex="1"  class="form-control" ng-model="profile.address1">
+            </div>
+            <div class="form-group" tooltip="Please enter your Address here">
+
+                Address line2: <input type="address" name="address2" id="address2" tabindex="1" class="form-control" ng-model="profile.address2">
+            </div>
+            <div class="form-group" tooltip="Please select your Country here">
+
+                Country: <input type="countries" name="countries" id="countries"  class="form-control" ng-model="profile.countries">
+                <!--<select name="countries" id="countries"  class="form-control" ng-model="profile.countries"></select>-->
+            </div>
+            <div class="form-group" tooltip="Please select your State here">
+
+                States: <input type="states" name="states" id="states"  class="form-control" ng-model="profile.states">
+                <!--<select name="states" id="states" class="form-control" ng-model="profile.states">-->
+                <!--</select>-->
+            </div>
+            <div class="form-group" tooltip="Please enter your City here">
+                City: <input type="city" name="city" id="city"  class="form-control" ng-model="profile.city">
+            </div>
+            <div class="form-group" tooltip="Please enter your Zipcode here">
+                Zip code: <input type="zipcode" name="zipcode" id="zipcode"  tabindex="1" class="form-control" ng-model="profile.zipcode">
+            </div>
+            <div class="form-group" tooltip="Please enter your Phone-number here">
+
+                Phone: <input type="text" class="form-control "  tabindex="1"  data-country="countries" ng-model="profile.Phone">
+            </div>
+            <!--Organisation: <select ng-model="nonprofit">-->
+            <div class="form-group"tooltip="Please select the Type of Organisation">
+                Type of Organisation: <input type="text" class="form-control" ng-model="profile.nonprofit">
+            </div>
+            <div class="form-group" tooltip="Please type your Name of Organization here">
+                Name of Organization: <input type="nameoforganisation" name="nameoforganisation" id="nameoforganisation" tabindex="1"  class="form-control"  ng-model="profile.nameoforganisation">
+            </div>
+
+            <div class="form-group" tooltip="Please type your Role in an  Organization here">
+                Role in Organization: <input type="roleinorganisation" name="roleinorganisation" id="roleinorganisation" tabindex="1"  class="form-control" ng-model="profile.roleinorganisation">
+            </div>
+            <div class="form-group" tooltip="Please enter the URL to institution">
+                URL to institution: <input type="url2" name="url2" id="url2" tabindex="1"  class="form-control" ng-model="profile.url2">
+            </div>
+            <div class="form-group" tooltip="Please enter the URL to profile">
+                URL to Profile: <input type="url1" name="url1" id="url1" tabindex="1"  class="form-control" ng-model="profile.url1">
+            </div>
+            <button type="submit" name="edit-submit" id="edit-submit" style="background-color: #008000;border: none;
+color: white;
+padding: 15px 32px; " ng-model="button" ng-disabled="!myprofile.$dirty">Update</button>
+        </form>
+    </div>
+</div>
+<div ng-if="showpage =='saved articles'"  style="margin-top: 3%;" >
+    <h3 class="col-sm-8 col-sm-offset-2">Your saved articles </h3>
+    <div class="col-sm-8 col-sm-offset-2"  ng-repeat="articleObj in saved_articles.title">
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <p> <img alt="ALT NAME" ng-src="{{articleObj.imgUrl}}" imageonload  align="left"> </p>
+            </div>
+            <div class="col-lg-6">
+                <a href="{{articleObj.iframeLink}}" target="_blank">{{articleObj.title}}</a>
+                <span class="glyphicon glyphicon-remove" ng-click="deleteSavedArticlesfunc($index)" style="float: right;"></span>
+                <!--<button type="button" class="close" aria-hidden="true" style="float: right;" ng-click="deleteSavedArticlesfunc($index)">&times;</button>-->
+                <p>{{articleObj.snippet}}</p>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div ng-if="showpage =='student'" class="container margin5Auto largeFont">
+    <ul><li>One website containing all of the updated and relevant information possible from various sources is a true and reliable resource for any student.
+    </li><br><li>In an age where ideas, apps and inventions are specific to solving one specific need, moneyabcs.org creates a space that is inclusive. As the trends of the lectures in the College of Business moves towards focusing on understanding the world of business and internalizing how it affects us, moneyabcs.org manages to not only provide current information but helps decode it through additional supplementary information without ever leaving the website.
+    </li> <br><li>A website as such proves to exceed the performance of BlackBoard, in the style of YouTube, with the information found on the Wall Street Journal along with the option of personalizing it like Pinterest. In short, it combines the best of all of the best websites that have ever been developed.
+    </li> <br><li>Moneyabcs.org communicates otherwise incomprehensible information on financial literacy and personal finance, therefore, nearly winning the title of the next default homepage of your browser.
+    </li></ul>
+</div>
+<div ng-if="showpage =='educator'" class="container margin5Auto largeFont">
+    <ul><li>From an educational perspective, moneyabcs.org is a well-balanced platform for not only a personal research portfolio but it doubles up as a channel for the educator as well.
+    </li><br><li>   If an educator wishes so, they may choose specific topics of interest, in order to share it with their students.
+    </li><br><li>  Once an educator creates an account with this website, he or she may start developing their space with the information provided on the website or add information of their own depending on how they wish to steer the information executed to the students.
+        Controlling the type of information and the method of its execution creates a synergy for both the educator and the student by combining each of their foremost needs onto one single website.
+    </li></ul>
+</div>
+<div ng-if="showpage =='supportflp'" class="container margin5Auto largeFont" >
+
+    <ul><li>Upon conducting a market research, I could not find a single website that had the capability of what we currently have to offer and its potential in the near future.
+    </li><br><li> More specifically, www.moneyabcs.org provides a platform that combines the winning aspects of Twitter, Pinterest and BlackBoard with the base topic of Financial Literacy into one visually attractive and user friendly page.
+    </li><br><li>   After a quick demo on moving along the page, the landing page displays current articles with the spiciest headlines tempting the visitor to stay engaged with the information on finance related topics.
+
+    </li><br><li> But what brings people to this specific website when compared to other giants such as YouTube?
+
+    </li><br><li>Majority of the videos uploaded by the public onto YouTube have been embedded on the landing page itself of this website, therefore, making this website a very effective and engaging financial literacy micro-database. From a business perspective, MoneyABCs.com solves an existing issue within the community of a single user friendly go-to place for personalized information in personal finance and financial literacy communicated at a personal level.
+    </li></ul>
+</div>
+
+<div class="main" ng-if="showpage =='dashboard'">
+    <div class="navbar navbar-inverse navbar-fixed-left">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <ul class="nav navbar-nav"
+            id = 'nav1' style="padding-left: 00px;padding-top: 00px">
+            <!--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>-->
+            <!--<ul class="dropdown-menu" role="menu">-->
+            <!--<li><a href="#">Sub Menu1</a></li>-->
+            <!--<li><a href="#">Sub Menu2</a></li>-->
+            <!--<li><a href="#">Sub Menu3</a></li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li><a href="#">Sub Menu4</a></li>-->
+            <!--<li><a href="#">Sub Menu5</a></li>-->
+            <!--</ul>-->
+            <!--</li>-->
+            <li><a class="active" href="#"
+                   onclick="createCard('Access Resources')">Access
+                Resources</a></li>
+            <li><a href="#" onclick="createCard('Request Specialist')">Request
+                Specialist</a></li>
+            <li><a href="#" onclick="createCard('Other Instructor Materials')">Find What Other Instructors are
+                Doing</a></li>
+            <li><a href="#" onclick="createCard('Find Funding Organizations')">Find Funders</a></li>
+            <li><a href="#" onclick="createCard('Raise Funds')">Set Up gofundme</a></li>
+            <li><a href="#" onclick="createCard('Upload Resource')">Upload
+            </a></li>
+            <li><a href="#" onclick="createCard('Offer Human Capital')">Offer Human Capital</a></li>
+            <li><a href="#" onclick="createCard('Offer Funds to Educators')">Offer Funds to Educators</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h2>Dashboard Content</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div id='card' class="card-block">
+                            <!--                            <h3 class="card-title">Upload Resources</h3>
+                                                        <p class="card-text">You can upload your
+                                                            resources here.
+                                                            .</p>
+                                                        <a href="#" class="btn btn-primary">Upload
+                                                            Content</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div ng-if="showpage =='aboutUS'"  style="margin-top: 3%; text-align: center;" >
+<div class="main">
+    <div class="main-top">
+        <div class="wrap">
+            <span style="color: silver;font-size: 31pt;">Site Under Construction</span>
+            <div class="contact-img">
+                <img src="images/manimg.png" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="wrap">
+            <div class="col span_1_of_3">
+                <div class="grid-bot">
+                    <div class="grid1-l-img">
+                        <img src="images/bubble.png" alt=""/>
+                    </div>
+                    <div class="grid1-l-desc">
+                        <p>Connect with Us</p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid-desc">
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col span_1_of_3">
+                <div class="grid-bot">
+                    <div class="grid1-l-img">
+                        <img src="images/location.png" alt=""/>
+                    </div>
+                    <div class="grid1-l-desc">
+                        <p>Explore our resources.</p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid-desc">
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col span_1_of_3">
+                <div class="grid-bot">
+                    <div class="grid1-l-img">
+                        <img src="images/manicon.png" alt=""/>
+                    </div>
+                    <div class="grid1-l-desc">
+                        <p>Who we are</p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid-desc">
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</p>
+                    </div>
+                </div>
+            </div>
+        </div></div></div>
+</div>
+
+
+
+
+<div ng-if="showpage =='contactUS'"  style="margin-top: 5%;" >
+    <div class="main">
+        <div class="main-top">
+            <div class="wrap" style="text-align: center; font-size: 21px;">
+                <h1>Contact Us</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="well well-sm">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">
+                                            Name</label>
+                                        <input type="text" class="form-control" id="name" ng-model="name" placeholder="Enter name" required="required" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">
+                                            Email Address</label>
+                                        <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                            <input type="email" class="form-control" id="email" ng-model="email"  placeholder="Enter email" required="required" /></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">
+                                            Subject</label>
+                                        <select id="subject" name="subject" ng-model="subject" class="form-control" required="required">
+                                            <option value="na" selected="">Choose One:</option>
+                                            <option value="General Customer Service">General Customer Service</option>
+                                            <option value="suggestions">Suggestions</option>
+                                            <option value="product">Product Support</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">
+                                            Message</label>
+                                        <textarea name="message" id="message" ng-model="message" class="form-control" rows="9" cols="25" required="required"
+                                                  placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button ng-click="contactMail()" class="btn btn-primary pull-right" id="btnContactUs">
+                                        Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form>
+                        <legend><span class="glyphicon glyphicon-globe"></span> Reach us at</legend>
+                        <address>
+                            <strong>Money ABCs Org</strong><br>
+
+                            <abbr title="Phone">
+                                P:</abbr>
+                            (817) 987-6240
+                        </address>
+                        <address>
+                            <strong>E-Mail</strong><br>
+                            <a href="mailto:#">info@moneyabcs.org</a>
+                        </address>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+<section ng-if="showpage =='default'" class="news pad20px" id="news-section">
+    <div class="container-fluid pad20px bgColorWhite marginMain">
+        <div class="row vdivide searchHide" style="margin-bottom: 3%;">
+            <div class="search_results" id="search_results"></div>
+            <div class="col-md-3"> <img src="images/whats_hot.png">
+                <h3>WHAT'S IN THE NEWS?</h3>
+                <h4 class="subheading">
+                    Here is what's trending in the news about personal finance and financial literacy.
+                </h4>
+                <div class="customize_button" id="customize"> <a type="button" class="btn btn-default" data-toggle="modal" data-target="#customize-modal" style="display: block; width: 100%;">Personlize</a> </div>
+            </div>
+            <div class="col-md-3" id="first_result">
+                <div class="sidebar_icons">
+                    <a class="fb-xfbml-parse-ignore"  data-url="http://www.moneyabcs.org" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{articleFeatured[0].displayLink}}&amp;src=sdkpreparse" ><img src="images/share.png" class="share" rel="tooltip" data-placement="bottom" title="share" id="share"></a>
+                    <img data-toggle="modal" id="email_1" data-ng-click="emailArticleToFriend($event)" data-target="#mailer" src="images/mail.png" class="mail" rel="tooltip" data-placement="bottom" title="mail">
+                    <img src="images/add.png" id="1" data-ng-click="addme($event)" class="add" rel="tooltip" data-placement="bottom" title="add">
+                </div>
+                <div class="thumbnail">
+                    <a href="{{articleFeatured[0].iframeLink}}"
+                       target="_blank"> <img class = "newsImg" topic="{{articleFeatured[0].indexTopic}}" set="no" alt="ALT NAME" ng-src="{{articleFeatured[0].imgUrl}}" imageonload>
+
+                        <div class="type">
+                            <img alt="ALT NAME" src="images/presentation.png" style="width: 35px;padding: 10px 0px 10px 10px; height: 45px;" imageonload>
+                        </div>
+
+                        <div class="rating">
+                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            <p href="#" style="float: right;padding-top: 10px; text-decoration: underline;">Comments: 2799</p>
+                        </div>
+
+                        <div class="caption">
+                            <h4>{{articleFeatured[0].title}}</h4>
+                            <p>{{articleFeatured[0].snippet}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="sidebar_icons">
+                    <a class="fb-xfbml-parse-ignore"   data-url="http://www.moneyabcs.org" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{articleFeatured[1].displayLink}}&amp;src=sdkpreparse" ><img src="images/share.png" class="share" rel="tooltip" data-placement="bottom" title="share"> </a>
+                    <img data-toggle="modal" id="email_2" data-ng-click="emailArticleToFriend($event)" data-target="#mailer" src="images/mail.png" class="mail" rel="tooltip" data-placement="bottom" title="mail">
+                    <img src="images/add.png" id="2" data-ng-click="addme($event)" class="add" rel="tooltip" data-placement="bottom" title="add">
+                </div>
+                <div class="thumbnail">
+                    <a href="{{articleFeatured[1].iframeLink}}"
+                       target="_blank"> <img class = "newsImg" set="no"
+                                             topic="{{articleFeatured[1].indexTopic}}" alt="ALT NAME" ng-src="{{articleFeatured[1].imgUrl}}" imageonload>
+
+                        <div class="type">
+                            <img alt="ALT NAME" src="images/presentation.png" style="width: 35px;padding: 10px 0px 10px 10px; height: 45px;" imageonload>
+                        </div>
+
+                        <div class="rating">
+                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            <p href="#" style="float: right;padding-top: 10px; text-decoration: underline;">Comments: 2799</p>
+                        </div>
+
+                        <div class="caption">
+                            <h4>{{articleFeatured[1].title}}</h4>
+                            <p>{{articleFeatured[1].snippet}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="sidebar_icons">
+                    <a class="fb-xfbml-parse-ignore"   data-url="http://www.moneyabcs.org" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{articleFeatured[1].displayLink}}&amp;src=sdkpreparse" ><img src="images/share.png" class="share" rel="tooltip" data-placement="bottom" title="share"> </a>
+                    <img data-toggle="modal" id="email_3"
+                         data-ng-click="emailArticleToFriend($event)" data-target="#mailer" src="images/mail.png" class="mail" rel="tooltip" data-placement="bottom" title="mail">
+                    <img src="images/add.png" id="3"
+                         data-ng-click="addme($event)" class="add" rel="tooltip" data-placement="bottom" title="add">
+                </div>
+                <div class="thumbnail">
+                    <a href="{{articleFeatured[2].iframeLink}}"
+                       target="_blank"> <img class = "newsImg" set="no"
+                                             topic="{{articleFeatured[1].indexTopic}}" alt="ALT NAME" ng-src="{{articleFeatured[2].imgUrl}}" imageonload>
+
+                        <div class="type">
+                            <img alt="ALT NAME" src="images/presentation.png" style="width: 35px;padding: 10px 0px 10px 10px; height: 45px;" imageonload>
+                        </div>
+
+                        <div class="rating">
+                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            <p href="#" style="float: right;padding-top: 10px; text-decoration: underline;">Comments: 2799</p>
+                        </div>
+
+
+                        <div class="caption">
+                            <h4>{{articleFeatured[2].title}}</h4>
+                            <p>{{articleFeatured[2].snippet}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row vdivide" id="sub_news"> <span ng-repeat="articleObj in article">
+                    <div class="col-md-3" style="margin-bottom:5%;">
+                       <div class="sidebar_icons">
+                           <a class="fb-xfbml-parse-ignore"  data-url="http://www.moneyabcs.org" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{articleObj.iframeLink}}&amp;src=sdkpreparse" ><img src="images/share.png" class="share" rel="tooltip" data-placement="bottom" title="share"> </a>
+                            <img data-toggle="modal" id="email_{{$index+3}}" data-ng-click="emailArticleToFriend($event)" data-target="#mailer" src="images/mail.png" class="mail" rel="tooltip" data-placement="bottom" title="mail">
+                            <img src="images/add.png" id={{$index+3}} data-ng-click="addme($event)" class="add" rel="tooltip" data-placement="bottom" title="add">
+                        </div>
+                         <a href="{{articleObj.iframeLink}}" target="_blank">
+                        <div class="thumbnail"> <img set="no" topic="{{articleObj.indexTopic}}" alt="ALT NAME" ng-src="{{articleObj.imgUrl}}" imageonload>
+
+                            <div class="type">
+    <img alt="ALT NAME" src="images/presentation.png" style="width: 35px;padding: 10px 0px 10px 10px; height: 45px;" imageonload>
+</div>
+
+<div class="rating">
+<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+<p href="#" style="float: right;padding-top: 10px; text-decoration: underline;">Comments: 2799</p>
+</div>
+
+
+                            <div class="caption">
+                                <h4>{{articleObj.title}}</h4>
+                                <p>{{articleObj.snippet}}</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </span> </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="articleLoadMore" class="btn btn-primary btn-round" ng-click="loadMore()" ng-hide="hideShowMore" style="display: block; width: 100%;">Show More ▼</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Mailer -->
+<div class="modal fade" id="mailer" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-share-alt"></i> Share</h4> </div>
+            <div class="modal-body">
+                <h2><i class="fa fa-envelope"></i>Send this article to your friend</h2>
+                <p>Subscribe to our weekly Newsletter and stay tuned.</p>
+                <form action="" method="post">
+                    <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="email" ng-model="recieverEmail" class="form-control" placeholder="your@email.com">
+                        <input type="url" class="form-control" placeholder="URL of the article" value={{emailArticle.title}} /> </div>
+                    <br />
+                    <button type="button" ng-click="sendMail()" class="btn btn-default send-mail" data-dismiss="modal">Send Mail!</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Mailer End -->
+<!-- Modal fullscreen -->
+<div class="modal modal-fullscreen" id="customize-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h3 class="modal-title headDef" id="myModalLabel" style="text-align:center">Personalize Your Experience</h3>
+                <h3 class="modal-title headRes"  style="text-align:center;display:none;"  id="myModalLabel" style="text-align:center">Tell us Which Topics you Want us to Prioritize</h3>
+                <h5 class="subtitleRes" style="text-align:center;display:none;">Unless you tell us otherwise, we’ll show you all the trending topics in the field. You can always revert to the default priority criterion by clicking <a class="resetCustomize" ng-click="resetCustomized()">here</a> anytime</h5>
+                <ul class="pager">
+                    <li class="previous" id="previous_customize" style="display:none;"><a href="">Previous</a></li>
+                    <li class="next" id="next_topics"><a href="">Next</a></li>
+                </ul>
+                <ul class="pager onkeysearchip" style="display:none;"><li>
+                    <div class="input-group" >
+                        <input type="hidden" name="search_param" value="name" id="search_param">
+                        <input type="text" id="search-key" class="form-control search1 onkeysearchip" placeholder="If you don’t like the suggested topics, type what you are interested in here! (e.g. Credit Scores)" autocomplete="off" class="customizeSearch" >
+                        <span class="input-group-addon onkeysearchbt" id="basic-addon2" >Add</span>
+                    </div>
+                    <div class="selected-topics-holder">
+                        <div class="footerContent" style="display:none;">
+                            <p>Your selection here</p>
+                            <div class="selected-topics"></div>
+                        </div>
+                    </div>
+                </li></ul>
+            </div>
+            <div class="modal-body">
+                <div class="customize_columns">
+                    <h4 id="customize">Choose your preferred display.</h4>
+                    <div class="row customize-column" id="schema" style="text-align:center">
+                        <div onclick="sixcols();" style="margin: 14px; width: 200px; height: 200px; float: left; background-image: url('images/6col.jpg'); background-size:cover;"><p style="padding: 70px;color:#8CC63F;">Six Column</p></div>
+                        <div onclick="original();" style="margin: 14px; width: 200px; height: 200px; float: left; background-image: url('images/4col.jpg'); background-size:cover;border:3px solid rgb(80, 198, 63);"> <p style="padding: 70px;color:#8CC63F;">Four Column</p></div>
+                        <div onclick="threecols();" style="margin: 14px; width: 200px; height: 200px; float: left; background-image: url('images/3col.jpg'); background-size:cover;"><p style="padding: 70px;color:#8CC63F;">Three Column</p></div>
+                        <div onclick="twocols();" style="margin: 14px; width: 200px; height: 200px; float: left; background-image: url('images/2col.jpg'); background-size:cover;"><p style="padding: 70px;color:#8CC63F;">Two Column</p></div>
+                    </div>
+                </div>
+
+                <div class="topics" style="display:none;">
+                    <p id="topics">Click on the topic(s) of your choice.
+                    </p>
+
+                    <div class="row topic-images"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="customizer-save" ng-click="getCustomizedArticles()" data-dismiss="modal">Save & Exit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="resources pad20px" id="sub_resources" ng-if="showpage =='default'">
+    <div class="container-fluid pad20px bgColorWhite marginMain">
+        <div class="row vdivide" id="resourceHolder">
+            <div class="col-md-3">
+                <img src="images/Forma-1.png">
+                <h3>TEACH ME ABOUT MONEY</h3>
+                <h4 class="subheading">
+                    Dig into our multiple instructional presentations, webinars, and videos.
+                </h4>
+                <div class="customize_button" id="customize"> <a type="button" class="btn btn-default" data-toggle="modal" data-target="#customize-modal" style="display: block; width: 100%;">Personalize</a> </div>
+            </div>
+            <span ng-repeat="resourcesObj in resources">
+                <div class="col-md-3" style="margin-bottom:5%;">
+                    <div class="sidebar_icons">
+                            <a class="fb-xfbml-parse-ignore"  data-url="http://www.moneyabcs.org" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{resourcesObj.webUrl}}&amp;src=sdkpreparse" ><img src="images/share.png" class="share" rel="tooltip" data-placement="bottom" title="share"> </a>
+                             <img data-toggle="modal" id="resourceEmail_{{$index+1}}" data-ng-click="emailArticlesToFriend($event)" data-target="#mailer" src="images/mail.png" class="mail" rel="tooltip" data-placement="bottom" title="mail">
+                            <img src="images/add.png" id={{$index+1}} data-ng-click="addme($event)" class="add" rel="tooltip" data-placement="bottom" title="add">
+                        </div>
+                    <div class="thumbnail"  data-toggle="modal" data-target="#resources">
+                        <img class="thumb" alt="ALT NAME" ng-src="{{resourcesObj.thumbnailLink}}" imageonload>
+                        <div class="type">
+                            <img alt="ALT NAME" ng-src="{{resourcesObj.type}}" imageonload>
+                        </div>
+
+                        <div class="rating">
+<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+<p href="#" style="float: right;padding-top: 10px; text-decoration: underline;">Comments: 2799</p>
+</div>
+
+                        <div class="caption">
+                            <p class="embedUrl" style="display:none;">{{resourcesObj.embedUrl}}</p>
+                            <h4 class="resourceTitle">{{resourcesObj.name}}</h4>
+                            <p>{{resourcesObj.description}}</p>
+                        </div>
+                    </div>
+                </div>
+                </span>
+        </div>
+        <hr>
+        <!-- <div class="row">
+             <div class="col-md-12">
+                 <button class="btn btn-primary btn-round" ng-click="loadMore()" ng-hide="hideShowMore" style="display: block; width: 100%;">Show More ▼</button>
+             </div>
+         </div> -->
+    </div>
+</section>
+<!-- Resources -->
+<div class="modal modal-fullscreen in" id="resources" tabindex="-1" role="dialog" aria-labelledby="resources" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close clearResource" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="modal_header"></h4> </div>
+            <div class="modal-body">
+                <span class="resourcesSpace"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default clearResource" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Resources End -->
+<section class="testimonials" ng-if="showpage =='default'">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="images/testimonials.png">
+                <h3>TESTIMONIALS</h3>
+            </div>
+            <div class="col-md-9 testimonials_">
+                <h4><i>“Thank you so much for taking the time to speak to my residents. The event was a success and they all enjoyed it and learned from it. I look forward to working with you in the future ”</i><br/><br/><span style="font-size:20px;">“- W.R., Resident Assistant”</span></h4> </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="footer">
+            <div class="container ">
+                <p>Copyright © 2016 Money ABCs. All Rights Reserved | Design by MoneyABCs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Follow us on:
+                    <a href="https://www.facebook.com/Moneyabcs-1795814797370838/ " target="_blank"> <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span> </a>
+                    <a href="https://twitter.com/moneyabcs_uta" target="_blank"> <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span> </a>
+                    <a href="https://www.instagram.com/moneyabcs_uta/" target="_blank"> <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                </span> </a>
+                    <a href="#" target="_blank"> <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span> </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //footer -->
+<!-- for bootstrap working -->
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/hopscotch.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/bootstrap-typeahead.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap-tour.js"></script>
+<script src="js/tour.js"></script>
+<script src="js/app.js">
+</script>
+<script src="js/controllers/moneycontroller.js"></script>
+<script src="js/homeController.js"></script>
+<script src="js/animatedModal.min.js"></script>
+<script src="js/image-picker.min.js"></script>
+<script src="js/image-picker.js"></script>
+<!-- //for bootstrap working -->
+
+<!--<script type="text/javascript">
+    onResize = function() {
+        // apply dynamic padding at the top of the body according to the fixed navbar height
+        $("#view").css("padding-top", $(".navbar-fixed-top").height()-31);
+    }
+    onResize();
+    // attach the function to the window resize event
+    $(window).resize(onResize);
+
+    // call it also when the page is ready after load or reload
+    $(function() {
+        onResize();
+    });
+
+
+</script>-->
+</body>
+
+</html>

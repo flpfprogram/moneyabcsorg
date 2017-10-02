@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <title>Money ABCs</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Money ABCs Financial literacy program" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //for-mobile-apps -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/image-picker.css">
+    <link href="css/hopscotch.min.css" rel="stylesheet">
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <link href="css/under_construction.css" rel="stylesheet">
+    <!-- js -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/topBar.js"></script>
+    <link rel="stylesheet" href="css/notify.css">
+    <!-- //js -->
+</head>
+<body ng-app="moneyabcs" ng-controller="moneycontroller">
+<div class="header">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png"></a>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="under_construction.html">Educators</a></li>
+                    <li><a href="under_construction.html">Support Financial Literacy</a></li>
+                    <li><a href="under_construction.html">About Us</a></li>
+                    <li><a href="under_construction.html">Contact Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="nav-buttons" id="user-buttons">
+                        <div id="login"><a type="button" class="btn btn-default btn-round" href="/login">Log in </a> <a type="button" class="btn btn-primary btn-round" href="/signup">Sign up</a></div>
+                            <div id="loggedin">
+                                <a href="profile.html">
+                                    <label id="welcomeLabel" style="color:white;">
+                                        <script>
+                                            document.getElementById("welcomeLabel").innerHTML = "Welcome " + localStorage.getItem("uName")
+                                        </script>
+                                    </label>
+                                </a>
+                                <button ng-click="logOutProfile()" class="btn btn-default btn-round">logout</button>
+                            </div>
+                    </div>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</div>
+<div class="main">
+    <div class="main-top">
+        <div class="wrap">
+            <h1>Contact Us</h1>
+        </div>  
+    </div>  
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well well-sm">
+                <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Name</label>
+                            <input type="text" class="form-control" id="name" ng-model="name" placeholder="Enter name" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email" class="form-control" id="email" ng-model="email"  placeholder="Enter email" required="required" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">
+                                Subject</label>
+                            <select id="subject" name="subject" ng-model="subject" class="form-control" required="required">
+                                <option value="na" selected="">Choose One:</option>
+                                <option value="General Customer Service">General Customer Service</option>
+                                <option value="suggestions">Suggestions</option>
+                                <option value="product">Product Support</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">
+                                Message</label>
+                            <textarea name="message" id="message" ng-model="message" class="form-control" rows="9" cols="25" required="required"
+                                placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button ng-click="contactMail()" class="btn btn-primary pull-right" id="btnContactUs">
+                            Send Message</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <form>
+            <legend><span class="glyphicon glyphicon-globe"></span> Reach us at</legend>
+            <address>
+                <strong>Money ABCs Org</strong><br>
+                
+                <abbr title="Phone">
+                    P:</abbr>
+                (817) 987-6240
+            </address>
+            <address>
+                <strong>E-Mail</strong><br>
+                <a href="mailto:#">info@moneyabcs.org</a>
+            </address>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <div class="clear"></div>
+</div>
+
+            <div class="footer">
+                <div class="container ">
+                   <p>Copyright © 2016 Money ABCs. All Rights Reserved | Design by MoneyABCs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Follow us on:
+                        <a href="https://www.facebook.com/Moneyabcs-1795814797370838/ " target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                        <a href="https://twitter.com/moneyabcs_uta" target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                        <a href="https://www.instagram.com/moneyabcs_uta/" target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                        <a href="#" target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+       
+</body>
+</html>

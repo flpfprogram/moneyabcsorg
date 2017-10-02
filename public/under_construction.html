@@ -1,0 +1,212 @@
+<head>
+    <title>Money ABCs</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Money ABCs Financial literacy program" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //for-mobile-apps -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/image-picker.css">
+    <link href="css/hopscotch.min.css" rel="stylesheet">
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <!-- js -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- //js -->
+</head>
+
+<body ng-app="moneyabcs" ng-controller="moneycontroller">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png"></a>
+                </div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="under_construction.html">Educators</a></li>
+                    <li><a href="under_construction.html">Support Financial Literacy</a></li>
+                    <li><a href="under_construction.html">About Us</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+                <div class="col-sm-3 col-md-3 top-search-bar">
+                    <form class="navbar-form" role="search">
+                        <div class="top-search-bar">
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#id"><i class="fa fa-angle-double-right"></i>Articles</a></li>
+                                    <li><a href="#name"><i class="fa fa-angle-double-right"></i>Presentations</a></li>
+                                    <li><a href="#videos"><i class="fa fa-angle-double-right"></i>Videos</a></li>
+                                    <li><a href="#webinars"><i class="fa fa-angle-double-right"></i>Webinars</a></li>
+                                    <li><a href="#journals"><i class="fa fa-angle-double-right"></i>Journals</a></li>
+                                </ul>
+                            </div>
+                             <input type="hidden" name="search_param" value="name" id="search_param">
+                                <input type="text" id="search-key" class="form-control search1" placeholder="What are you looking for? (e.g. Credit Scores) " autocomplete="off">
+                            <div class="input-group-btn">
+                                <button ng-click="searchArticle()" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="nav-buttons" id="user-buttons">
+                        <div id="login"><a type="button" class="btn btn-default btn-round" href="/login">Log in </a> <a type="button" class="btn btn-primary btn-round" href="/signup">Sign up</a></div>
+                        <div id="loggedin">
+                            <a href="profile.html">
+                                <label id="welcomeLabel" style="color:white;">
+                                    <script>
+                                        document.getElementById("welcomeLabel").innerHTML = "Welcome " + localStorage.getItem("uName")
+                                    </script>
+                                </label>
+                            </a>
+                            <button ng-click="logOutProfile()" class="btn btn-default btn-round">logout</button>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <pre>
+
+
+
+    </pre>
+ <center>
+ <br>
+ <div class="main">
+    <div class="main-top">
+        <div class="wrap">
+            <span style="color: silver;font-size: 31pt;">Site Under Construction</span>
+            <div class="contact-img">
+                <img src="images/manimg.png" alt=""/>
+            </div>
+        </div>  
+    </div>  
+<div class="content">
+    <div class="wrap">
+                <div class="col span_1_of_3">
+                    <div class="grid-bot">
+                                <div class="grid1-l-img">
+                                    <img src="images/bubble.png" alt=""/>
+                                </div>
+                                <div class="grid1-l-desc">
+                                    <p>Connect with Us</p>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid-desc">
+                                    <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</p>
+                                </div>
+                    </div>
+                </div>
+                <div class="col span_1_of_3">
+                    <div class="grid-bot">
+                                <div class="grid1-l-img">
+                                    <img src="images/location.png" alt=""/>
+                                </div>
+                                <div class="grid1-l-desc">
+                                    <p>Explore our resources.</p>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid-desc">
+                                    <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</p>
+                                </div>
+                    </div>
+                </div>
+
+                <div class="col span_1_of_3">
+                    <div class="grid-bot">
+                                <div class="grid1-l-img">
+                                    <img src="images/manicon.png" alt=""/>
+                                </div>
+                                <div class="grid1-l-desc">
+                                    <p>Who we are</p>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid-desc">
+                                    <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</p>
+                                </div>
+                    </div>
+                </div></center>
+                <div class="clear"></div>
+    </div>
+</div>
+    <div class="clear"></div>
+</div>
+
+            <div class="footer">
+                <div class="container ">
+                   <p>Copyright © 2016 Money ABCs. All Rights Reserved | Design by MoneyABCs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Follow us on:
+                        <a href="https://www.facebook.com/Moneyabcs-1795814797370838/ " target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                        <a href="https://twitter.com/moneyabcs_uta" target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                        <a href="https://www.instagram.com/moneyabcs_uta/" target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                        <a href="#" target="_blank">
+                            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+            </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+    <!-- //footer -->
+    <!-- for bootstrap working -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/hopscotch.js"></script>
+    <script src="js/tour.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/app.js">
+    </script>
+    <script src="js/homeController.js"></script>
+    <script src="js/animatedModal.min.js"></script>
+    <script src="js/image-picker.min.js"></script>
+    <script src="js/image-picker.js"></script>
+    <!-- //for bootstrap working -->
+</body>
+
+</html>

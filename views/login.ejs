@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>MoneyABC's LOGIN</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+    <!-- load fontawesome -->
+    <style>
+        body {
+            padding-top: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo">
+                    <a href="#"><img src="images/logo.png"></a>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ><a href="index.html">Home</a></li>
+                    <li><a href="under_construction.html">Educators</a></li>
+                    <li><a href="under_construction.html">Support Financial Literacy</a></li>
+                    <li><a href="under_construction.html">About Us</a></li>
+                    <li><a href="under_construction.html">Contact Us</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="nav-buttons" id="user-buttons">
+                        <a type="button" class="btn btn-default btn-round" ng-model="users.local.username" href="/login">Log in</a>
+                        <a type="button" class="btn btn-primary btn-round" ng-model="users.local.password" href="/signup">Sign up</a>
+                    </div>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1><span></span> <center>Login</center></h1>
+
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div>
+                <% } %>
+
+                    <!-- LOGIN FORM -->
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <!--<label>UserName</label>-->
+                            <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+                        </div>
+                        <div class="form-group">
+                            <!--<label>Password</label>-->
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+
+                        <button type="submit" style="background-color:  #008000;border: none;
+    color: white;
+    padding: 15px 32px; ">Login</button>
+                    </form>
+
+                    <hr>
+
+                    <p>Need an account? <a href="/signup">Signup</a></p>
+                    <p>Or go <a href="/">home</a>.</p>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
